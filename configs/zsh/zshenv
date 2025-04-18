@@ -1,0 +1,54 @@
+# ZSH Environment Configuration
+# Sourced for ALL shells (interactive, non-interactive, login, non-login)
+# Used for setting user's environment variables;
+# It should not contain commands that produce output or assume the shell is attached to a tty.
+
+### Ensure path arrays do not contain duplicates.
+# typeset -gU cdpath fpath mailpath path
+
+### Set the list of directories that Zsh searches for programs.
+path=(
+  /usr/local/{bin,sbin}
+  ~/.composer/vendor/bin
+  $HOME/.local/bin
+  $path
+)
+# Flatpak paths
+export XDG_DATA_DIRS="${XDG_DATA_DIRS:-/usr/local/share:/usr/share}:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share"
+
+
+### Language Environment
+# Set language environment if not already defined
+if [[ -z "$LANG" ]]; then
+  export LANG='en_GB.UTF-8'
+fi
+
+### Editor Configuration
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vi'
+else
+  export EDITOR='nvim'
+fi
+
+### Pager Configuration
+# Set the default pager
+export PAGER='less'
+# Less options:
+# -F = exit if content fits on one screen
+# -g = highlight search matches
+# -i = case-insensitive search
+# -j.5 = center search results
+# -M = verbose prompt
+# -Q = quiet mode (no bell)
+# -R = allow ANSI color codes
+# -S = chop long lines
+# -w = highlight first new line after forward movement
+# --mouse = enable mouse wheel scrolling
+export LESS='-F -g -i -j.5 -M -Q -R -S -w --mouse -z-4'
+# Note: If you want enhanced file type handling in less,
+# consider installing lesspipe in the future
+
+### Application Settings
+# Disable Next.js telemetry
+export NEXT_TELEMETRY_DISABLED=1
