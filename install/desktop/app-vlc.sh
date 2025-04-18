@@ -1,7 +1,7 @@
 # Description: Install VLC Media Player
 
-# Use the Flatpak version as it offers wider selection of codecs
-flatpak install flathub org.videolan.VLC
+sudo apt install -y vlc
 
-# Alternative method
-# sudo apt install -y vlc
+# Optionally, use the Flatpak version as it may offer a wider selection of codecs
+#flatpak install flathub org.videolan.VLC
+
